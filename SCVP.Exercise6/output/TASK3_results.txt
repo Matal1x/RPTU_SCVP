@@ -1,0 +1,23 @@
+@100000:real    0m50.655s
+        user    0m51.282s
+        sys     0m0.000s
+
+@10000: real    0m53.329s
+        user    0m53.763s
+        sys     0m0.019s
+
+@1000:  real    0m53.153s
+        user    0m51.557s
+        sys     0m0.010s         
+
+@100:   real    1m15.656s
+        user    1m14.585s
+        sys     0m0.029s
+
+@10:    real    1m32.987s
+        user    1m32.776s
+        sys     0m0.019s
+
+@1:     real    1m30.285s
+        user    1m30.278s
+        sys     0m0.001s

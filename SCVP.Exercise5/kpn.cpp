@@ -3,6 +3,12 @@
 
 #include "kpn.h"
 
+
+/* Do not forget that these are implemented as SC_THREAD,
+    meaning that they would die if they reach the end of the code.
+      Hence, using an infinite loop is necessary */
+
+
 // ADD THINGS HERE
 template <unsigned int depth>
 void kpn<depth>::Add(){

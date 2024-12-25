@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(Exercise6)
 
-add_executable(exercise6
+add_executable(exercise6_TASK3
     main.cpp
     memory.h
     processor.h
@@ -12,7 +12,7 @@ add_executable(exercise6
     stimuli2.txt
 )
 
-target_include_directories(exercise6
+target_include_directories(exercise6_TASK3
     PRIVATE $ENV{SYSTEMC_HOME}/include/
 )
 
@@ -21,6 +21,6 @@ find_library(SYSTEMC_LIBRARY
     PATHS $ENV{SYSTEMC_HOME}/lib-$ENV{SYSTEMC_TARGET_ARCH}/
 )
 
-target_link_libraries(exercise6
+target_link_libraries(exercise6_TASK3
     PRIVATE ${SYSTEMC_LIBRARY}
 )

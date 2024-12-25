@@ -19,6 +19,8 @@ private:
 	std::ifstream file;
 	sc_time cycleTime;
 
+ 	tlm_utils::tlm_quantumkeeper quantumKeeper; // TASK 3
+
 	// Method:
     void processTrace();
     void processRandom();
@@ -50,7 +52,14 @@ processor::processor(sc_module_name, std::string pathToFile, sc_time cycleTime) 
 	if (!file.is_open())
 		SC_REPORT_FATAL(name(), "Could not open trace");
 
-    SC_THREAD(processTrace);
+    //SC_THREAD(processTrace); //Task 1 and 2
+
+	SC_THREAD(processRandom); // Task 3
+	quantumKeeper.set_global_quantum(
+ 		sc_time(1,SC_NS)
+ 	);
+ 	quantumKeeper.reset();
+	// ---------
 
 	iSocket.bind(*this);
 }
@@ -231,7 +240,16 @@ void processor::processRandom()
         trans.set_address(address);
         iSocket->b_transport(trans, delay);
 
-        wait(delay);
+        // wait(delay); // Task 1 and 2
+
+		quantumKeeper.set(delay);
+ 		// Consume internal computation time
+ 		quantumKeeper.inc(sc_time(10,SC_NS));
+
+ 		if(quantumKeeper.need_sync())
+		{
+ 			quantumKeeper.sync();		// Calls wait() internally
+ 		}
     }
 
     // End Simulation because there are no events.
