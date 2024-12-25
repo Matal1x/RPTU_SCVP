@@ -3,16 +3,31 @@
 
 #include <systemc.h>
 
+template <unsigned int depth = 10>
 SC_MODULE(kpn)
 {
 private:
     // ADD THINGS HERE
+    sc_fifo<unsigned int> a,b,c,d;
+    unsigned int counter=0;
 
 public:
-    SC_CTOR(kpn) // : ADD THINGS HERE
+    sc_out<unsigned int> e;
+    SC_CTOR(kpn): a(depth), b(depth), c(depth), d(depth) // : ADD THINGS HERE
     {
         // ADD THINGS HERE
+        /* initializing 'b' and 'c' with 1 and 0 values respectively as mentioned
+            in the documentation. */
+        b.write(1); c.write(0);
+
+        SC_THREAD(Add);
+        SC_THREAD(Split);
+        SC_THREAD(Delay);
     }
+
+    void Add();
+    void Split();
+    void Delay();
 };
 
 #endif // KPN_H
