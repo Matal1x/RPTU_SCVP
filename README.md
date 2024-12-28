@@ -31,8 +31,8 @@
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 #### Exercise-7
-- [X] TODO
-- [ ] DONE
+- [ ] TODO
+- [X] DONE
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 #### Exercise-8
