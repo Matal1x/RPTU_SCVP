@@ -56,7 +56,7 @@ processor::processor(sc_module_name, std::string pathToFile, sc_time cycleTime) 
 
 	SC_THREAD(processRandom); // Task 3
 	quantumKeeper.set_global_quantum(
- 		sc_time(1,SC_NS)
+ 		sc_time(100000,SC_NS)
  	);
  	quantumKeeper.reset();
 	// ---------
@@ -235,7 +235,8 @@ void processor::processRandom()
         cycles = distrCycle(randGenerator);
         address = distrAddr(randGenerator);
 
-        sc_time delay = cycles * cycleTime;
+        //sc_time delay = cycles * cycleTime;
+		sc_time delay = quantumKeeper.get_local_time() + cycles * cycleTime; 
 
         trans.set_address(address);
         iSocket->b_transport(trans, delay);
@@ -243,8 +244,6 @@ void processor::processRandom()
         // wait(delay); // Task 1 and 2
 
 		quantumKeeper.set(delay);
- 		// Consume internal computation time
- 		quantumKeeper.inc(sc_time(10,SC_NS));
 
  		if(quantumKeeper.need_sync())
 		{
