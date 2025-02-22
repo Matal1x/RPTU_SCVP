@@ -9,12 +9,12 @@ project(Exercise2)
 # Choose "nand_main.cpp" here to test your NAND implementation.
 # Choose "exor_main.cpp" here to test your XOR implementation.
 
-add_executable(exercise2_exor
-    #nand_main.cpp
-    exor_main.cpp
+add_executable(exercise2_nand_v3
+    nand_main.cpp
+    #exor_main.cpp
 )
 
-target_include_directories(exercise2_exor
+target_include_directories(exercise2_nand_v3
     PRIVATE $ENV{SYSTEMC_HOME}/include/
 )
 
@@ -23,6 +23,6 @@ find_library(SYSTEMC_LIBRARY
     PATHS $ENV{SYSTEMC_HOME}/lib-$ENV{SYSTEMC_TARGET_ARCH}/
 )
 
-target_link_libraries(exercise2_exor
+target_link_libraries(exercise2_nand_v3
     PRIVATE ${SYSTEMC_LIBRARY}
 )

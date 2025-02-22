@@ -2,6 +2,7 @@
 #define STATE_MACHINE_H
 
 #include <systemc.h>
+#include <string>
 
 // TODO
 SC_MODULE(stateMachine){
@@ -11,7 +12,7 @@ SC_MODULE(stateMachine){
     enum base {Start, G, GA, GAA, GAAG};
     base current_state;
 
-    int counter, pos;
+    int counter, Acounter, pos;
 
     void process(){
         // std::cout << "Inside process" << std::endl;
@@ -25,6 +26,7 @@ SC_MODULE(stateMachine){
         case Start:
             if (input.read() == 'G')
             {
+                Acounter = 0;
                 current_state = G;
             }
             break;
@@ -65,6 +67,11 @@ SC_MODULE(stateMachine){
             {
                 current_state = GAAG;
             }
+            else if (input.read() == 'A')
+            {
+                current_state = GAA; // Task .3 
+                Acounter++;
+            }
             else
             {
                 current_state = Start;
@@ -72,10 +79,11 @@ SC_MODULE(stateMachine){
             break;
 
         case GAAG:
-            std::cout << "GAAG" << std::endl;
+            std::cout << "GAA" << std::string(Acounter, 'A') << "G" << std::endl;
+
             counter++;
             std::cout << "Number of occurences: " << counter << std::endl;
-            std::cout << "From Character number " << pos-4 << " to " << pos <<std::endl;
+            std::cout << "From Character number " << pos-4-Acounter << " to " << pos <<std::endl;
             std::cout << std::endl;
 
             if (input.read() == 'G')
@@ -99,7 +107,7 @@ SC_MODULE(stateMachine){
         SC_METHOD(process);
         sensitive << clk.pos();
         current_state = Start;
-        counter = 0; pos = 0;
+        counter = 0; pos = 0; Acounter= 0;
         dont_initialize();
     }
 };

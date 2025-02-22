@@ -46,8 +46,8 @@ private:
         // First test with the next two lines of code enabled.
         // In a second moment comment out the next two lines of code and see
         // what happens.
-        A.write(false);
-        B.write(false);
+        // A.write(false);
+        // B.write(false);
 
         // This is the first message that is printed when the process is
         // executed.
@@ -69,12 +69,12 @@ private:
         //  - Is the process triggered when Z changes?
         //  - Are some of the writes to A and B ignored?
 
-        //A.write(false);
-        //B.write(false);
-        //A.write(true);
-        //B.write(false);
-        //A.write(false);
-        //B.write(true);
+        A.write(false);
+        B.write(false);
+        A.write(true);
+        B.write(false);
+        A.write(false);
+        B.write(true);
 
         // Print a new line
         std::cout << std::endl;
