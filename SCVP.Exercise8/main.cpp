@@ -213,8 +213,8 @@ int sc_main (int, char **)
 {
     Initiator *cpu1   = new Initiator("C1");
 
-    Target *memory1   = new Target("M1", 8);
-    Target *memory2   = new Target("M2", 8);
+    Target *memory1   = new Target("M1", 6);
+    Target *memory2   = new Target("M2", 6);
 
     Interconnect *bus = new Interconnect("B1");
 
